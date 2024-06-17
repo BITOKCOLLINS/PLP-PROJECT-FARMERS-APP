@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // Import for building the user interface
 
 void main() {
-  runApp(FarmersRevenueEvaluationApp());
+  runApp(FarmersRevenueEvaluationApp()); // Start the app with the main widget
 }
 
 class FarmersRevenueEvaluationApp extends StatelessWidget {
@@ -10,15 +10,15 @@ class FarmersRevenueEvaluationApp extends StatelessWidget {
     return MaterialApp(
       title: 'Farmers Revenue Evaluation',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.green, // Sets the app's primary color theme
       ),
-      initialRoute: '/login',
+      initialRoute: '/', // Defines the initial route (login screen)
       routes: {
-        '/login': (context) => LoginPage(),
-        '/': (context) => PlantationExpensePage(),
+        '/': (context) => LoginPage(),
+        '/expense': (context) => PlantationExpensePage(),
         '/revenue': (context) => RevenuePage(),
         '/result': (context) => ResultPage(),
-        //'/statistics': (context) => StatisticsPage(),
+        '/statistics': (context) => StatisticsPage(),
       },
     );
   }
@@ -45,15 +45,24 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Login'), // Title for login screen
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Form(
+          // Form widget for handling user input and validation
           key: _formKey,
           child: Column(
             children: [
+              Container( // Container to hold the image
+                child: Image.asset(
+                  'assets/login.png',
+                  height: 100.0, // image height
+                ),
+              ),
               TextFormField(
+                // Text field for username
                 controller: _usernameController,
                 decoration: InputDecoration(labelText: 'Username (user)'),
                 validator: (value) {
@@ -64,6 +73,7 @@ class _LoginPageState extends State<LoginPage> {
                 },
               ),
               TextFormField(
+                // Text field for password (hidden)
                 controller: _passwordController,
                 decoration: InputDecoration(labelText: 'Password (pass)'),
                 obscureText: true,
@@ -74,7 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 20), // Spacing between elements
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
@@ -83,9 +93,9 @@ class _LoginPageState extends State<LoginPage> {
 
                     if (username == 'user' && password == 'pass') {
                       // Navigate to PlantationExpensePage
-                      Navigator.pushNamed(context, '/');
+                      Navigator.pushNamed(context, '/expense');
                     } else {
-                      // Show an error message
+                      // Show an error message for invalid credentials
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text('Invalid username or password'),
@@ -126,6 +136,7 @@ class _PlantationExpensePageState extends State<PlantationExpensePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Enter Plantation Expense'),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -197,6 +208,7 @@ class _RevenuePageState extends State<RevenuePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Enter Harvest Revenue'),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -249,12 +261,19 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Result'),
+        backgroundColor: Colors.lightBlue,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container( // Container to hold the image
+                child: Image.asset(
+                  'assets/analysis.jpg',
+                  height: 100.0, // image height
+                ),
+              ),
             Text(
               'Year: $year',
               style: TextStyle(fontSize: 20),
@@ -301,6 +320,7 @@ class StatisticsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Statistics'),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

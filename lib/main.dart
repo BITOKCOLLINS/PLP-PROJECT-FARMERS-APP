@@ -17,7 +17,7 @@ class FarmersRevenueEvaluationApp extends StatelessWidget {
         //'/login': (context) => LoginPage(),
         '/': (context) => PlantationExpensePage(),
         '/revenue': (context) => RevenuePage(),
-        //'/result': (context) => ResultPage(),
+        '/result': (context) => ResultPage(),
         //'/statistics': (context) => StatisticsPage(),
       },
     );
@@ -156,4 +156,55 @@ class _RevenuePageState extends State<RevenuePage> {
   }
 }
 
+class ResultPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context)?.settings.arguments as Map;
+    final year = arguments['year'];
+    final expense = double.parse(arguments['expense']);
+    final revenue = double.parse(arguments['revenue']);
+    final profitOrLoss = revenue - expense;
+    final profitOrLossPercent = (profitOrLoss / expense) * 100;
 
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Result'),
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Year: $year',
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              'Expense: \$${expense.toStringAsFixed(2)}',
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              'Revenue: \$${revenue.toStringAsFixed(2)}',
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              profitOrLoss >= 0
+                  ? 'Profit: \$${profitOrLoss.toStringAsFixed(2)} (${profitOrLossPercent.toStringAsFixed(2)}%)'
+                  : 'Loss: \$${(-profitOrLoss).toStringAsFixed(2)} (${(-profitOrLossPercent).toStringAsFixed(2)}%)',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: profitOrLoss >= 0 ? Colors.green : Colors.red),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/statistics');
+              },
+              child: Text('View Statistics'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

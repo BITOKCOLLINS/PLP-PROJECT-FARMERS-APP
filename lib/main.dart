@@ -137,6 +137,18 @@ class _PlantationExpensePageState extends State<PlantationExpensePage> {
       appBar: AppBar(
         title: Text('Enter Plantation Expense'),
         backgroundColor: Colors.blue,
+        actions: [
+          Stack(
+            children: [
+              IconButton(
+                icon: Icon(Icons.bar_chart_outlined), // Statistics icon
+                onPressed: () {
+                  Navigator.pushNamed(context, '/statistics');
+                },
+              ),
+            ],
+          ),
+        ],
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -330,6 +342,10 @@ class StatisticsPage extends StatelessWidget {
     ];
 
     return Scaffold(
+      endDrawer: Container(
+      width: MediaQuery.of(context).size.width * 0.5, // Set desired width (50%)
+      child: const MyDrawer(), // Drawer content widget
+      ),
       appBar: AppBar(
         title: Text('Statistics'),
         backgroundColor: Colors.blue,
@@ -354,6 +370,81 @@ class StatisticsPage extends StatelessWidget {
             );
           }).toList(),
         ),
+      ),
+    );
+  }
+}
+
+class MyDrawer extends StatelessWidget {
+  const MyDrawer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: [
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+            ),
+            child: Text(
+              'Farmers App',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text('Home'),
+            onTap: () {
+              // Navigate to the home screen
+              Navigator.pushReplacementNamed(context, '/expense');
+            },
+          ),
+          ListTile(
+          leading: Icon(Icons.monetization_on_outlined), // Expense Icon
+          title: Text('Expense'),
+          onTap: () {
+            // Navigate to the expense screen
+            Navigator.pushNamed(context, '/expense');
+          },
+          ),
+          ListTile(
+            leading: Icon(Icons.money_off_outlined), // Revenue Icon
+            title: Text('Revenue'),
+            onTap: () {
+              // Navigate to the revenue screen
+              Navigator.pushNamed(context, '/revenue');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.bar_chart_outlined), // Statistics Icon
+            title: Text('Statistics'),
+            onTap: () {
+              // Navigate to the statistics screen
+              Navigator.pushNamed(context, '/statistics');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Settings'),
+            onTap: () {
+              // Navigate to the settings screen
+              Navigator.pushNamed(context, '/settings');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.info),
+            title: Text('About'),
+            onTap: () {
+              // Navigate to the about screen
+              Navigator.pushNamed(context, '/about');
+            },
+          ),
+        ],
       ),
     );
   }

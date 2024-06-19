@@ -400,48 +400,42 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.home),
             title: Text('Home'),
             onTap: () {
-              // Navigate to the home screen
-              Navigator.pushReplacementNamed(context, '/expense');
+              Navigator.pushReplacementNamed(context, '/expense'); // Navigate to the home screen
             },
           ),
           ListTile(
           leading: Icon(Icons.monetization_on_outlined), // Expense Icon
           title: Text('Expense'),
-          onTap: () {
-            // Navigate to the expense screen
-            Navigator.pushNamed(context, '/expense');
+          onTap: () { 
+            Navigator.pushNamed(context, '/expense'); // Navigate to the expense screen
           },
           ),
           ListTile(
             leading: Icon(Icons.money_off_outlined), // Revenue Icon
             title: Text('Revenue'),
-            onTap: () {
-              // Navigate to the revenue screen
-              Navigator.pushNamed(context, '/revenue');
+            onTap: () { 
+              Navigator.pushNamed(context, '/expense'); // Navigate to the revenue screen
             },
           ),
           ListTile(
             leading: Icon(Icons.bar_chart_outlined), // Statistics Icon
             title: Text('Statistics'),
             onTap: () {
-              // Navigate to the statistics screen
-              Navigator.pushNamed(context, '/statistics');
+              Navigator.pushNamed(context, '/statistics'); // Navigate to the statistics screen
             },
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
-              // Navigate to the settings screen
-              Navigator.pushNamed(context, '/settings');
+              Navigator.pushNamed(context, '/settings'); // Navigate to the settings screen
             },
           ),
           ListTile(
             leading: Icon(Icons.info),
             title: Text('About'),
             onTap: () {
-              // Navigate to the about screen
-              Navigator.pushNamed(context, '/about');
+              Navigator.pushNamed(context, '/about'); // Navigate to the about screen
             },
           ),
         ],

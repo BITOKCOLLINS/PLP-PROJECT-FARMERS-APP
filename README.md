@@ -1,6 +1,18 @@
 # farmers_revenue_evaluation
 
-A new Flutter project.
+Farmers App Flutter Application This Flutter application is designed to evaluate the expense and revenue then display either the profit or loss attained.
+
+User pages used:
+## Login Page 
+    Prompts user for username (user) and password (pass)
+## Expense Page
+    Expense
+## Revenue Page
+    Revenue
+## Results Page
+    Profit/Loss
+## Statistics Page
+    Stats
 
 ## Getting Started
 

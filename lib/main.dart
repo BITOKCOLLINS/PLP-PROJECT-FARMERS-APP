@@ -297,7 +297,11 @@ class ResultPage extends StatelessWidget {
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/statistics');
+                Navigator.pushNamed(context, '/statistics', arguments: {
+                  'year': year,
+                  'expense': expense,
+                  'revenue': revenue,
+                });
               },
               child: Text('View Statistics'),
             ),
@@ -311,10 +315,18 @@ class ResultPage extends StatelessWidget {
 class StatisticsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>? ?? {};
+    final newEntry = {
+      'year': arguments['year'] ?? '',
+      'revenue': arguments['revenue'] ?? 0.0,
+      'expense': arguments['expense'] ?? 0.0,
+    };
+
     final data = [
       {'year': '2021', 'revenue': 120000.0, 'expense': 100000.0},
       {'year': '2022', 'revenue': 150000.0, 'expense': 110000.0},
       {'year': '2023', 'revenue': 170000.0, 'expense': 130000.0},
+      if (newEntry['year'] != '' && newEntry['revenue'] != 0.0 && newEntry['expense'] != 0.0) newEntry,
     ];
 
     return Scaffold(
